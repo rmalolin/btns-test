@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [value, setValue] = useState(1);
+  const [showButtons, setShowButtons] = useState(false);
+  const handleButtonClick = (value) => {
+    setValue(value);
+    setShowButtons(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button className="mainBtn" onClick={() => setShowButtons(true)}>
+        {value}
+      </button>
+
+      {showButtons ? (
+        <div className="selectorsBtn">
+          <button onClick={() => handleButtonClick(1)}>1</button>
+          <button onClick={() => handleButtonClick(2)}>2</button>
+          <button onClick={() => handleButtonClick(3)}>3</button>
+        </div>
+      ) : (
+        <div></div>
+      )}
+    </>
   );
 }
 
